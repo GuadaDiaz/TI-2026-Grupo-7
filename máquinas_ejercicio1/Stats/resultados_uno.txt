@@ -1,0 +1,12 @@
+--- Análisis de la cabecera WAV ---
+Chunk ID: RIFF
+Formato de audio: WAVE
+Tamaño del archivo: 244302 bytes
+Número de canales: 2
+Frecuencia de muestreo: 44100 Hz
+Alineación de bloque: 4.0 
+Tasa de bytes: 176400.0 bytes
+
+--- Análisis de la entropía ---
+WAV Entropy: 6.9015 bits/byte
+MP3 Entropy: 7.9267 bits/byte
