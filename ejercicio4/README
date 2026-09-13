@@ -1,0 +1,26 @@
+# Teoría de la Información: Ejercicio 4 - Índice de Coincidencia (IC)
+
+## Fundamentos Teóricos
+
+El Índice de Coincidencia mide la probabilidad de que dos elementos extraídos aleatoriamente de un conjunto sean idénticos.
+
+Al procesar los archivos como flujos binarios puros (_raw byte streams_), el análisis expone los siguientes comportamientos fundamentales:
+
+- **Para un archivo .txt (codificado en UTF-8 o ASCII)**, el IC de bytes se mantendrá alto (usualmente entre 0.06 y 0.09) por la redundancia estructural: espacios repetidos, vocales dominantes y patrones sintácticos predecibles.
+
+- **Para un archivo .zip**, el valor esperado aleatorio no es 0.038, sino aproximadamente 0.0039. Un algoritmo de compresión eficiente elimina la redundancia de los datos, forzando una distribución casi uniforme que representa máxima entropía.
+
+## Requisitos Previos / Prerequisites
+
+- Python 3.8+
+- Librerías estándar: `collections`, `pathlib`
+
+## Ejecución / Deployment
+
+Para replicar el análisis empírico, es crítico que el _Current Working Directory_ (CWD) contenga tanto el script ejecutable como los datasets de prueba de volumen equivalente.
+
+Ejecute el siguiente comando en su terminal:s
+
+```bash
+python main.py
+```

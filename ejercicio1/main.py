@@ -70,5 +70,6 @@ def analizar_archivos(ruta_wav: str, ruta_mp3: str):
     plt.tight_layout()
     plt.show()
 
-# Ejecución (reemplazar con rutas reales)
-analizar_archivos('pistas/pista_uno.wav', 'pistas/pista_dos.mp3')
+if __name__ == "__main__":
+    # Ejecución
+    analizar_archivos('pistas/pista_uno.wav', 'pistas/pista_dos.mp3')

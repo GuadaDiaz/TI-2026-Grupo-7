@@ -35,5 +35,5 @@ def analizar_entropia_archivo(ruta_archivo):
 
 if __name__ == "__main__":
     analizar_entropia_archivo(r".\archivos\archivo.txt")
-    analizar_entropia_archivo(r".\archivos\archivo.rar")
+    analizar_entropia_archivo(r".\archivos\archivo.zip")
     pass

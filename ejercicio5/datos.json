@@ -1,0 +1,302 @@
+[
+  {
+    "nombre": "Manuel Ortega",
+    "direccion": "C\u00f3rdoba 364",
+    "dni": 41042799,
+    "flags": [
+      "False",
+      "False",
+      "False",
+      "True",
+      "True",
+      "False",
+      "True",
+      "False"
+    ]
+  },
+  {
+    "nombre": "Manuel Ortega",
+    "direccion": "Ignacio de la Roza 456",
+    "dni": 28825429,
+    "flags": [
+      "False",
+      "True",
+      "False",
+      "True",
+      "False",
+      "False",
+      "False",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Joaqu\u00edn Albornoz",
+    "direccion": "C\u00f3rdoba 364",
+    "dni": 42914894,
+    "flags": [
+      "True",
+      "False",
+      "True",
+      "True",
+      "False",
+      "True",
+      "True",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Guadalupe Diaz",
+    "direccion": "Av Libertador 123",
+    "dni": 40259029,
+    "flags": [
+      "False",
+      "True",
+      "False",
+      "True",
+      "False",
+      "True",
+      "True",
+      "False"
+    ]
+  },
+  {
+    "nombre": "Guadalupe Diaz",
+    "direccion": "Ignacio de la Roza 456",
+    "dni": 30467928,
+    "flags": [
+      "True",
+      "True",
+      "True",
+      "False",
+      "True",
+      "False",
+      "True",
+      "False"
+    ]
+  },
+  {
+    "nombre": "Joaqu\u00edn Albornoz",
+    "direccion": "Ignacio de la Roza 456",
+    "dni": 28404054,
+    "flags": [
+      "True",
+      "True",
+      "False",
+      "True",
+      "True",
+      "True",
+      "True",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Joaqu\u00edn Albornoz",
+    "direccion": "Mendoza 789",
+    "dni": 34465354,
+    "flags": [
+      "False",
+      "False",
+      "True",
+      "False",
+      "False",
+      "False",
+      "False",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Guadalupe Diaz",
+    "direccion": "Ignacio de la Roza 456",
+    "dni": 25629637,
+    "flags": [
+      "True",
+      "False",
+      "False",
+      "False",
+      "True",
+      "True",
+      "True",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Guadalupe Diaz",
+    "direccion": "Ignacio de la Roza 456",
+    "dni": 30345788,
+    "flags": [
+      "False",
+      "False",
+      "True",
+      "True",
+      "True",
+      "True",
+      "True",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Guadalupe Diaz",
+    "direccion": "Mendoza 789",
+    "dni": 45692504,
+    "flags": [
+      "False",
+      "False",
+      "True",
+      "True",
+      "False",
+      "True",
+      "True",
+      "False"
+    ]
+  },
+  {
+    "nombre": "Manuel Ortega",
+    "direccion": "Ignacio de la Roza 456",
+    "dni": 43777317,
+    "flags": [
+      "True",
+      "True",
+      "True",
+      "False",
+      "False",
+      "True",
+      "True",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Raul Klenzi",
+    "direccion": "Av Libertador 123",
+    "dni": 42107771,
+    "flags": [
+      "False",
+      "True",
+      "False",
+      "False",
+      "False",
+      "False",
+      "False",
+      "False"
+    ]
+  },
+  {
+    "nombre": "Joaqu\u00edn Albornoz",
+    "direccion": "C\u00f3rdoba 364",
+    "dni": 25646325,
+    "flags": [
+      "True",
+      "True",
+      "True",
+      "True",
+      "True",
+      "False",
+      "False",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Manuel Ortega",
+    "direccion": "C\u00f3rdoba 364",
+    "dni": 29116637,
+    "flags": [
+      "True",
+      "True",
+      "True",
+      "True",
+      "True",
+      "False",
+      "False",
+      "False"
+    ]
+  },
+  {
+    "nombre": "Guadalupe Diaz",
+    "direccion": "Ignacio de la Roza 456",
+    "dni": 37890784,
+    "flags": [
+      "False",
+      "False",
+      "False",
+      "False",
+      "True",
+      "True",
+      "True",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Raul Klenzi",
+    "direccion": "Av Libertador 123",
+    "dni": 29073593,
+    "flags": [
+      "False",
+      "True",
+      "False",
+      "False",
+      "False",
+      "True",
+      "True",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Raul Klenzi",
+    "direccion": "C\u00f3rdoba 364",
+    "dni": 29986429,
+    "flags": [
+      "True",
+      "True",
+      "False",
+      "True",
+      "True",
+      "False",
+      "True",
+      "False"
+    ]
+  },
+  {
+    "nombre": "Guadalupe Diaz",
+    "direccion": "Ignacio de la Roza 456",
+    "dni": 36422890,
+    "flags": [
+      "False",
+      "True",
+      "True",
+      "False",
+      "False",
+      "True",
+      "True",
+      "True"
+    ]
+  },
+  {
+    "nombre": "Raul Klenzi",
+    "direccion": "Mendoza 789",
+    "dni": 23549262,
+    "flags": [
+      "False",
+      "False",
+      "False",
+      "False",
+      "True",
+      "True",
+      "False",
+      "False"
+    ]
+  },
+  {
+    "nombre": "Joaqu\u00edn Albornoz",
+    "direccion": "Ignacio de la Roza 456",
+    "dni": 28428182,
+    "flags": [
+      "True",
+      "False",
+      "True",
+      "False",
+      "False",
+      "False",
+      "True",
+      "False"
+    ]
+  }
+]
