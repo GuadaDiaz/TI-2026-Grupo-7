@@ -14,9 +14,15 @@ es independiente y se ejecuta por separado.
   python main.py
   ```
 
-- No hay un único `requirements.txt` para todo el repo porque cada ejercicio tiene
-  dependencias distintas (la mayoría solo usa la librería estándar). Se detallan
-  debajo, ejercicio por ejercicio.
+- La mayoría de los ejercicios solo usa la librería estándar de Python. Los que
+  necesitan dependencias externas (Ejercicios 1 y 2) están cubiertas por el
+  [`requirements.txt`](requirements.txt) de la raíz del repo, instalable con:
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+  Se detalla debajo, ejercicio por ejercicio, qué necesita cada uno.
 
 ---
 
@@ -26,9 +32,10 @@ Compara la entropía de Shannon de un audio sin comprimir (WAV/PCM) contra uno
 comprimido (MP3), y grafica el histograma de bytes de cada uno. Ver también
 [ejercicio1/README](ejercicio1/README).
 
-**Dependencias:**
+**Dependencias:** `numpy`, `scipy`, `matplotlib` (incluidas en el
+[`requirements.txt`](requirements.txt) de la raíz).
 ```bash
-pip install numpy scipy matplotlib
+pip install -r requirements.txt
 ```
 
 **Ejecución:**
@@ -46,9 +53,10 @@ Abre una ventana con los histogramas comparativos (matplotlib).
 Compara la entropía de una imagen sin comprimir (BMP) contra su versión comprimida
 (JPG), analiza la cabecera BMP y grafica los histogramas de bytes.
 
-**Dependencias:**
+**Dependencias:** `matplotlib`, `pillow` (incluidas en el
+[`requirements.txt`](requirements.txt) de la raíz).
 ```bash
-pip install matplotlib pillow
+pip install -r requirements.txt
 ```
 
 **Ejecución:**

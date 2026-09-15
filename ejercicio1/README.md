@@ -27,9 +27,13 @@ El proyecto calcula la **Entropía de Shannon** para determinar el límite teór
 Para la ejecución de este ejercicio es necesario instalar las siguientes dependencias externas:
 
 - Python 3.8+
+- `numpy`, `scipy`, `matplotlib`
+
+Todas están incluidas en el [`requirements.txt`](../requirements.txt) de la raíz
+del repositorio. Para instalarlas:
 
 ```bash
-pip install numpy scipy matplotlib
+pip install -r ../requirements.txt
 ```
 
 ## Ejecución
