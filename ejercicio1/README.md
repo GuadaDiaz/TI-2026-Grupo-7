@@ -1,8 +1,9 @@
-# Análisis Entrópico y Estructural de Archivos de Audio (WAV vs. MP3)
+# Ejercicio 1 — Análisis Entrópico y Estructural de Archivos de Audio (WAV vs. MP3)
 
 ## Descripción General
 
-En este ejercicio analizala cantidad de información transportada por señales de audio, contrastando un formato sin compresión (PCM/WAV) con un formato de compresión perceptiva (MP3).
+En este ejercicio analiza la cantidad de información transportada por señales de audio, contrastando un formato sin compresión (PCM/WAV) con un formato de compresión perceptiva (MP3).
+Se calcula la entropía de Shannon de un audio sin comprimir contra uno comprimido, y se grafica el histograma de bytes de cada uno.
 
 ## Fundamentos Teóricos
 
@@ -23,11 +24,21 @@ El proyecto calcula la **Entropía de Shannon** para determinar el límite teór
 
 ## Dependencias
 
+Para la ejecución de este ejercicio es necesario instalar las siguientes dependencias externas:
+
 - Python 3.8+
-- `numpy`
-- `scipy`
-- `matplotlib`
 
-## Uso
+```bash
+pip install numpy scipy matplotlib
+```
 
-Ejecutar el script proporcionando en el código fuente las rutas relativas o absolutas a los archivos `.wav` y `.mp3` correspondientes.
+## Ejecución
+
+El script debe ejecutarse estando ubicado dentro de la carpeta `ejercicio1`.
+
+```bash
+cd ejercicio1
+python main.py
+```
+
+El programa leerá automáticamente los archivos incluidos en la carpeta `pistas/` (`pista_uno.wav` y `pista_dos.mp3`) y abrirá una ventana con los histogramas (matplotlib).

@@ -1,4 +1,4 @@
-# TI-2026-GRUPO-7 — Teoría de la Información
+# TI-2026-GRUPO-8 — Teoría de la Información
 
 Trabajos prácticos de la materia Teoría de la Información. Cada carpeta `ejercicioN/`
 es independiente y se ejecuta por separado.
