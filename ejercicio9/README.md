@@ -24,4 +24,4 @@ Este programa requiere ejecutar el servidor y el cliente simultáneamente. Neces
    ```
    El cliente se conectará a `127.0.0.1:5555`, ejecutará las distintas fases (BER empírico, efecto del ruido y cálculo de métricas) y se desconectará enviando un comando de salida.
 
-El servidor seguirá ejecutándose esperando nuevas conexiones. Para cerrarlo, presiona `Ctrl+C` en la Terminal 1.
+Una vez que finaliza ambas fases, el cliente envía un mensaje SALIR para detener el servidor.
