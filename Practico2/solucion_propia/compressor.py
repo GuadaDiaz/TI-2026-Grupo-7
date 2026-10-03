@@ -25,21 +25,19 @@ def construir_arbol_y_codigos(frecuencias):
         simbolo = list(frecuencias.keys())[0]
         return {simbolo: "0"}
         
-    # 1. Crear una hojita (Nodo) por cada símbolo y meterlos en una lista
+    # 1. Creamos un nodo por cada símbolo y los metemos en una lista
     lista_nodos = [NodoHuffman(simbolo, freq) for simbolo, freq in frecuencias.items()]
     
-    # Transformamos la lista en una "cola de prioridad" (heap). 
-    # Esto hace que los nodos con MENOR frecuencia siempre queden arriba de todo, listos para sacar.
+    # Transformamos la lista en una "cola de prioridad" (heap) para que los nodos de menor frecuencia queden siempre arriba de todo, listos para sacar. 
     heapq.heapify(lista_nodos)
     
     # 2. Agrupar subárboles hasta que quede 1 solo nodo (la raíz del árbol)
     while len(lista_nodos) > 1:
-        # Sacamos los dos nodos más chicos (los menos probables)
+        # Sacamos los dos nodos menos probables
         nodo1 = heapq.heappop(lista_nodos)
         nodo2 = heapq.heappop(lista_nodos)
         
-        # Creamos un "nodo padre". No tiene símbolo real (le ponemos None),
-        # pero su frecuencia es la suma de los dos hijos.
+        # Creamos un "nodo padre" sin símbolo (None) cuya frecuencia es la suma de los dos hijos.
         padre = NodoHuffman(None, nodo1.frecuencia + nodo2.frecuencia)
         padre.izq = nodo1
         padre.der = nodo2
@@ -55,7 +53,7 @@ def construir_arbol_y_codigos(frecuencias):
     
     def generar_codigos_recursivo(nodo, prefijo_actual):
         if nodo is not None:
-            # Si tiene un símbolo real, ¡llegamos a una hoja! Guardamos el código.
+            # Si tiene un símbolo real, se llegó a una hoja. Guardamos el código.
             if nodo.simbolo is not None:
                 codigos_binarios[nodo.simbolo] = prefijo_actual
             # Si no, seguimos bajando: agregamos "0" a la izquierda y "1" a la derecha
@@ -105,18 +103,6 @@ if __name__ == "__main__":
     # 1. Recolectar estadísticas
     estadisticas = recolectar_estadistica_markov(archivo_entrada)
     print(f"Estadísticas recolectadas para {len(estadisticas)} contextos (bytes anteriores) diferentes.\n")
-    
-    # Solo para debug: Mostrar un resumen de lo que recolectó
-        # print("--- Muestra de las transiciones (Markov de Orden 1) ---")
-        # for byte_ant, contadores in list(estadisticas.items()): # Mostramos todos los contextos (es un archivo chico)
-        #     letra_ant = chr(byte_ant) if 32 <= byte_ant <= 126 else f"\\x{byte_ant:02x}"
-        #     print(f"Después de '{letra_ant}' (byte {byte_ant}), las siguientes letras fueron:")
-            
-        #     # Iteramos sobre TODOS los caracteres que le siguieron, sin límite
-        #     for byte_act, cantidad in contadores.items(): 
-        #         letra_act = chr(byte_act) if 32 <= byte_act <= 126 else f"\\x{byte_act:02x}"
-        #         print(f"  -> '{letra_act}' apareció {cantidad} veces")
-        # print("...")
 
     # -------------------------------------------------------------------------------------------
     
@@ -129,23 +115,15 @@ if __name__ == "__main__":
         # Para cada "contexto" (byte_ant), construimos su propio arbolito
         codigos_binarios = construir_arbol_y_codigos(frecuencias_siguientes)
         codigos_markov[byte_ant] = codigos_binarios
-        
-    # Solo para debug: Mostrar cómo quedó la tabla de códigos para la letra 'A' (código ascii 65)
-        # letra_A_ascii = ord('A')
-        # if letra_A_ascii in codigos_markov:
-        #     print("\n--- Códigos de Huffman si la letra anterior fue 'A' ---")
-        #     for byte_act, codigo_binario in codigos_markov[letra_A_ascii].items():
-        #         letra_act = chr(byte_act) if 32 <= byte_act <= 126 else f"\\x{byte_act:02x}"
-        #         print(f" Si viene la '{letra_act}' se codifica como: {codigo_binario}")
             
-    # 3. Escribir la cabecera (header) y los datos comprimidos
+    # 3. Escribimos la cabecera y los datos comprimidos
     print("Escribiendo archivo comprimido...")
     
     with open(archivo_entrada, 'rb') as f_in, open(archivo_salida, 'wb') as f_out:
         datos = f_in.read()
         
         # Primero guardamos la estadística (las frecuencias) para que el descompresor pueda armar los mismos árboles
-        # También le pasamos el primer byte (que va "gratis" ya que no tiene contexto) y la longitud total original.
+        # También le pasamos el primer byte (ya que no tiene contexto) y la longitud total original.
         if len(datos) > 0:
             primer_byte = datos[0]
             longitud_original = len(datos)
