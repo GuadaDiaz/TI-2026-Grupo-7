@@ -1,0 +1,5 @@
+Archivo,So_bytes,Sc_bytes,H_bytes,Ratio_R,Ahorro_pct,Relativo_pct,Vc_MB_s,Vd_MB_s,Overhead_H_pct,T_comp_TDI_ms,T_decomp_TDI_ms,Sc_gzip_bytes,Ratio_gzip,T_comp_gzip_ms,T_decomp_gzip_ms,Weissman,Integridad_SHA256
+prueba_1_pequena.txt,63,419,405,0.1504,-565.08,665.08,0.0004,0.0004,96.66,168.22,162.17,58,1.0862,0.13,0.04,0.0001,OK
+prueba_2_texto_natural.txt,102400,42346,2153,2.4182,58.65,41.35,0.2968,0.3092,5.08,345.01,331.16,1919,53.3611,1.02,0.32,0.0001,OK
+prueba_3_alta_repeticion.txt,102400,20649,396,4.9591,79.83,20.17,0.3375,0.3112,1.92,303.41,329.04,914,112.035,1.66,0.22,0.0039,OK
+prueba_4_baja_repeticion.txt,102400,121034,37362,0.846,-18.2,118.2,0.2311,0.194,30.87,443.09,527.71,85234,1.2014,4.64,0.94,0.1775,OK
