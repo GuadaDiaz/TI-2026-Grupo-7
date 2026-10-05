@@ -1,6 +1,6 @@
 # Práctico 2: Compresión y Descompresión con Markov + Huffman
 
-**Materia:** Teoría de la Información — UNSJ  
+**Materia:** Teoría de la Información  
 **Grupo:** Grupo 7  
 **Algoritmo:** Modelo de Markov de Orden 1 combinado con Codificación de Huffman Estática por Contexto  
 **Formato de salida:** `.tdi`  
