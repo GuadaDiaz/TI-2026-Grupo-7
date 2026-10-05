@@ -176,3 +176,4 @@ if __name__ == "__main__":
             f_out.write(bytes([byte_val]))
 
     print(f"Listo! Archivo guardado como {archivo_salida}")
+
