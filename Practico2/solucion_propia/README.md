@@ -12,7 +12,7 @@
 El proyecto cumple estrictamente con la estructura solicitada por la cátedra:
 
 ```text
-Practico2/
+Practico2/solucion_propia/
 │
 ├── compressor.py          # Implementación de la compresión propia
 ├── decompressor.py        # Implementación de la descompresión propia
