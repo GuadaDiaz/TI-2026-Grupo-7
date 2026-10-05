@@ -63,3 +63,63 @@ python decompressor.py <archivo_comprimido.tdi> <archivo_recuperado>
 _Ejemplo:_ `python decompressor.py salida.tdi recuperado.txt`
 
 ---
+
+## 5. Solución Externa y Baseline
+
+Para cumplir con la comparativa exigida por la cátedra, el proyecto evalúa el rendimiento del compresor propio contra dos alternativas:
+
+1. **Baseline de la Cátedra:** `gzip -6` (nivel de compresión por defecto, utilizando la herramienta estándar).
+2. **Solución Externa (Sorteo B):** **PeaZip**.
+   - Formato utilizado: **PEA**.
+   - Algoritmo utilizado: **PCOMPRESS2**.
+   - Compresión equivalente: **Deflate nivel 6** (en PeaZip esto corresponde a la opción de compresión *Normal* o *Default*).
+
+---
+
+## 6. Automatización del Benchmark
+
+Se provee el script `benchmark.py` que automatiza la medición de métricas (tamaño original, tamaño comprimido, ratio, ahorro de espacio, tiempo de compresión y **Weissman Score**) sobre el corpus de prueba para los tres compresores de manera simultánea.
+
+### Requisitos adicionales para el Benchmark
+
+Para que el script `benchmark.py` funcione correctamente, se asume que las siguientes herramientas de consola están instaladas en el sistema en las rutas predeterminadas, o que se modifiquen las variables correspondientes al principio del script:
+
+- `pea.exe`: Motor de compresión backend de PeaZip (usualmente en `C:\Program Files\PeaZip\pea.exe`).
+- `gzip.exe`: Herramienta gzip (ej. la provista por Git Bash en `C:\Program Files\Git\usr\bin\gzip.exe`).
+
+### Instrucciones de Ejecución
+
+Para ejecutar todas las pruebas, ubíquese en el directorio `Practico2/solucion_propia` y ejecute:
+
+```bash
+python benchmark.py
+```
+
+El script procesará iterativamente los 4 archivos en la carpeta `pruebas/`, generará los archivos comprimidos correspondientes (`.gz`, `.tdi`, `.pea`), medirá los tiempos y luego calculará todas las métricas solicitadas, imprimiendo una tabla en consola.
+
+---
+
+## 7. Ejemplo de Resultados (Benchmark)
+
+Al ejecutar el benchmark sobre el corpus oficial (archivos de 100 KB y uno de 66 bytes), se obtienen resultados similares a los siguientes:
+
+**Prueba 1 (Archivo muy pequeño - 66 bytes)**
+*Finalidad: Observar el costo de cabecera.*
+- El baseline `gzip` comprime a 82 bytes.
+- Nuestro formato `.tdi` aumenta el tamaño a 446 bytes debido al almacenamiento explícito del diccionario de Markov mediante *pickle*.
+- `PeaZip` (PEA) sufre el mismo problema de cabecera, generando un archivo de 315 bytes.
+
+**Prueba 2 (Texto natural - 100 KB)**
+*Finalidad: Distribución lingüística real.*
+- `gzip` y `PeaZip` logran un ratio sobresaliente (aprox. 50:1).
+- Nuestro compresor `.tdi` logra un ratio de **2.44:1** (ahorro de casi 60%), demostrando que el modelo de Markov + Huffman captura correctamente las frecuencias condicionales del lenguaje.
+
+**Prueba 3 (Alta repetición - 100 KB)**
+*Finalidad: Rachas largas y patrones.*
+- `gzip` y `PeaZip` tienen un desempeño extremo gracias a LZ77 (ratios > 100:1).
+- Nuestro compresor `.tdi` mejora su ratio a **4.96:1** (ahorro del 80%) al detectar contextos predecibles (símbolos que siempre son seguidos por el mismo símbolo).
+
+**Prueba 4 (Baja repetición / Pseudoaleatorio - 100 KB)**
+*Finalidad: Baja redundancia.*
+- `gzip` y `PeaZip` logran achicar levemente el archivo (ahorro del ~16%) aprovechando cualquier pequeño patrón residual.
+- Por el contrario, nuestro compresor `.tdi` aumenta el tamaño (ahorro negativo). Esto ocurre porque en un archivo de alta entropía casi todos los contextos posibles existen, lo que infla enormemente el diccionario de la cabecera sin aportar un ahorro real en los datos.
