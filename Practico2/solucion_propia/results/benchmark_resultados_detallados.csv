@@ -1,0 +1,13 @@
+Archivo,Algoritmo,S_orig (B),S_comp (B),Cabecera H (B),Ratio,Ahorro %,Relativo %,Vc (MB/s),Vd (MB/s),T_Comp (ms),T_Decomp (ms),Weissman,Integridad
+prueba_1_pequena.txt,Python TDI,66,434,420,0.1521,-557.58,657.58,0.0006,0.0005,116.34,134.12,0.068,OK
+prueba_1_pequena.txt,GZIP,66,61,10,1.082,7.58,92.42,0.0425,-,1.55,-,1.0,OK
+prueba_1_pequena.txt,PeaZip,66,346,-,0.1908,-424.24,524.24,0.0026,-,25,-,0.1261,OK (GUI)
+prueba_2_texto_natural.txt,Python TDI,103524,42502,2169,2.4357,58.94,41.06,0.3656,0.4038,283.16,256.39,0.0185,OK
+prueba_2_texto_natural.txt,GZIP,103524,1927,10,53.7229,98.14,1.86,42.529,-,2.43,-,1.0,OK
+prueba_2_texto_natural.txt,PeaZip,103524,2218,-,46.6745,97.86,2.14,3.2351,-,32,-,0.5772,OK (GUI)
+prueba_3_alta_repeticion.txt,Python TDI,102793,20714,412,4.9625,79.85,20.15,0.4923,0.5403,208.8,190.27,0.0141,OK
+prueba_3_alta_repeticion.txt,GZIP,102793,679,10,151.3888,99.34,0.66,52.3919,-,1.96,-,1.0,OK
+prueba_3_alta_repeticion.txt,PeaZip,102793,972,-,105.7541,99.05,0.95,3.6712,-,28,-,0.4827,OK (GUI)
+prueba_4_baja_repeticion.txt,Python TDI,102400,121034,37362,0.846,-18.2,118.2,0.3474,0.293,294.73,349.53,0.2852,OK
+prueba_4_baja_repeticion.txt,GZIP,102400,85234,10,1.2014,16.76,83.24,16.569,-,6.18,-,1.0,OK
+prueba_4_baja_repeticion.txt,PeaZip,102400,85527,-,1.1973,16.48,83.52,3.531,-,29,-,0.6815,OK (GUI)

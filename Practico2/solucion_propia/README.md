@@ -1,9 +1,9 @@
 # Práctico 2: Compresión y Descompresión con Markov + Huffman
 
 **Materia:** Teoría de la Información  
-**Grupo:** Grupo 7  
+**Grupo:** Grupo 7
 **Algoritmo:** Modelo de Markov de Orden 1 combinado con Codificación de Huffman Estática por Contexto  
-**Formato de salida:** `.tdi`  
+**Formato de salida:** `.tdi`
 
 ---
 
@@ -40,6 +40,7 @@ El compresor explota la **probabilidad condicional** entre símbolos contiguos, 
 $$P(S_n \mid S_{n-1}, S_{n-2}, \dots) \approx P(S_n \mid S_{n-1})$$
 
 ### Etapas del Algoritmo:
+
 1. **Recolección de Estadísticas (Markov):** En una primera pasada sobre los bytes del archivo original, se contabilizan las frecuencias de transición entre cada byte previo ($S_{n-1}$, el "contexto") y el byte actual ($S_n$).
 2. **Generación de Árboles de Huffman Independientes:** Para cada contexto detectado, se construye una cola de prioridad (`heapq`) y un árbol de Huffman estático independiente. De este modo, los símbolos más frecuentes condicionados a ese contexto reciben códigos binarios más cortos.
 3. **Codificación:** En la segunda pasada, cada byte se codifica usando el código correspondiente a su contexto anterior. Los bits resultantes se empaquetan en bytes contiguos y se escriben al archivo `.tdi`.
@@ -52,13 +53,16 @@ $$P(S_n \mid S_{n-1}, S_{n-2}, \dots) \approx P(S_n \mid S_{n-1})$$
 El archivo `.tdi` consta de dos secciones: **Cabecera (Header)** y **Cuerpo de Datos (Payload)**.
 
 ### Estructura de la Cabecera
+
 Para garantizar que la descompresión sea 100% autónoma y reproducible sin requerir tablas externas, los metadatos se serializan mediante la librería estándar `pickle`:
+
 - `primer_byte`: El byte inicial del archivo (no posee contexto previo).
 - `longitud_original`: Número total de bytes del archivo original (indispensable para descartar el padding final).
 - `estadisticas`: Diccionario de transiciones de Markov `{byte_anterior: {byte_actual: frecuencia}}`. Permite al descompresor construir exactamente los mismos árboles de Huffman.
 
 ### Payload
-Flujo binario contiguo con los códigos de Huffman concatenados. El último byte incluye *padding* de ceros a la derecha si la longitud total de bits no es múltiplo de 8.
+
+Flujo binario contiguo con los códigos de Huffman concatenados. El último byte incluye _padding_ de ceros a la derecha si la longitud total de bits no es múltiplo de 8.
 
 ---
 
@@ -75,30 +79,38 @@ Flujo binario contiguo con los códigos de Huffman concatenados. El último byte
 Todos los comandos se ejecutan desde el directorio `Practico2/`:
 
 ### Compresión
+
 ```bash
 python compressor.py tests/prueba_2_texto_natural.txt salida.tdi
 ```
 
 ### Descompresión
+
 ```bash
 python decompressor.py salida.tdi recuperado.txt
 ```
 
 ### Verificación de Integridad (SHA-256)
+
 En PowerShell:
+
 ```powershell
 Get-FileHash tests/prueba_2_texto_natural.txt -Algorithm SHA256
 Get-FileHash recuperado.txt -Algorithm SHA256
 ```
+
 En Linux / Git Bash:
+
 ```bash
 sha256sum tests/prueba_2_texto_natural.txt recuperado.txt
 ```
 
 ### Ejecución del Benchmark Automatizado
+
 ```bash
 python benchmark.py
 ```
+
 El script ejecutará las mediciones sobre la carpeta `tests/`, imprimirá las tablas en consola y exportará los resultados actualizados a la carpeta `results/`.
 
 ---
@@ -106,6 +118,7 @@ El script ejecutará las mediciones sobre la carpeta `tests/`, imprimirá las ta
 ## 6. Solución Externa y Baseline
 
 Para cumplir con la comparativa requerida por la cátedra:
+
 1. **Baseline Oficial:** `gzip -6` (algoritmo Deflate, nivel de compresión estándar por defecto RFC 1952).
 2. **Solución Externa:** **PeaZip** (formato PEA, algoritmo `PCOMPRESS2` equivalente a Deflate nivel 6).
 
@@ -116,7 +129,7 @@ Para cumplir con la comparativa requerida por la cátedra:
 Sea $S_o$ el tamaño original en bytes y $S_c$ el tamaño comprimido en bytes:
 
 - **Ratio de compresión:** $R = \frac{S_o}{S_c}$  
-  *(R > 1 indica reducción; R < 1 indica expansión).*
+  _(R > 1 indica reducción; R < 1 indica expansión)._
 - **Ahorro de espacio (%):** $A = \left(1 - \frac{S_c}{S_o}\right) \times 100$
 - **Tamaño relativo (%):** $P = \left(\frac{S_c}{S_o}\right) \times 100$
 - **Throughput de compresión:** $V_c = \frac{\text{Tamaño original (MB)}}{\text{Tiempo de compresión (s)}}$
@@ -132,30 +145,31 @@ Sea $S_o$ el tamaño original en bytes y $S_c$ el tamaño comprimido en bytes:
 
 ### Tabla Comparativa Principal
 
-| Archivo | Algoritmo | Ratio ($R$) | Tiempo ($T$) | Ratio gzip ($R_{ref}$) | Tiempo gzip ($T_{ref}$) | Weissman ($W$) |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| `prueba_1_pequena.txt` | Markov+Huffman (TDI) | 0.15 | 189.34 ms | 1.09 | 0.14 ms | 0.0001 |
-| `prueba_2_texto_natural.txt` | Markov+Huffman (TDI) | 2.42 | 346.66 ms | 53.36 | 1.25 ms | 0.0017 |
-| `prueba_3_alta_repeticion.txt` | Markov+Huffman (TDI) | 4.96 | 290.92 ms | 112.04 | 1.55 ms | 0.0034 |
-| `prueba_4_baja_repeticion.txt` | Markov+Huffman (TDI) | 0.85 | 411.77 ms | 1.20 | 4.22 ms | 0.1685 |
+| Archivo                        | Algoritmo            | Ratio ($R$) | Tiempo ($T$) | Ratio gzip ($R_{ref}$) | Tiempo gzip ($T_{ref}$) | Weissman ($W$) |
+| :----------------------------- | :------------------- | :---------: | :----------: | :--------------------: | :---------------------: | :------------: |
+| `prueba_1_pequena.txt`         | Markov+Huffman (TDI) |    0.15     |  189.34 ms   |          1.09          |         0.14 ms         |     0.0001     |
+| `prueba_2_texto_natural.txt`   | Markov+Huffman (TDI) |    2.42     |  346.66 ms   |         53.36          |         1.25 ms         |     0.0017     |
+| `prueba_3_alta_repeticion.txt` | Markov+Huffman (TDI) |    4.96     |  290.92 ms   |         112.04         |         1.55 ms         |     0.0034     |
+| `prueba_4_baja_repeticion.txt` | Markov+Huffman (TDI) |    0.85     |  411.77 ms   |          1.20          |         4.22 ms         |     0.1685     |
 
 ### Tabla Detallada de Métricas Completas
 
-| Archivo | $S_o$ (B) | $S_c$ (B) | $H$ (B) | $R$ | $A$ (%) | $P$ (%) | $V_c$ (MB/s) | $V_d$ (MB/s) | $O$ (%) | Integridad SHA-256 |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `prueba_1_pequena.txt` | 63 | 419 | 405 | 0.15 | -565.08% | 665.08% | 0.0003 | 0.0003 | **96.66%** | **OK (Exacto)** |
-| `prueba_2_texto_natural.txt` | 102,400 | 42,346 | 2,153 | **2.42** | **58.65%** | 41.35% | 0.2954 | 0.3150 | **5.08%** | **OK (Exacto)** |
-| `prueba_3_alta_repeticion.txt` | 102,400 | 20,649 | 396 | **4.96** | **79.83%** | 20.17% | 0.3520 | 0.4264 | **1.92%** | **OK (Exacto)** |
-| `prueba_4_baja_repeticion.txt` | 102,400 | 121,034 | 37,362 | 0.85 | -18.20% | 118.20% | 0.2487 | 0.2157 | **30.87%** | **OK (Exacto)** |
+| Archivo                        | $S_o$ (B) | $S_c$ (B) | $H$ (B) |   $R$    |  $A$ (%)   | $P$ (%) | $V_c$ (MB/s) | $V_d$ (MB/s) |  $O$ (%)   | Integridad SHA-256 |
+| :----------------------------- | :-------: | :-------: | :-----: | :------: | :--------: | :-----: | :----------: | :----------: | :--------: | :----------------: |
+| `prueba_1_pequena.txt`         |    63     |    419    |   405   |   0.15   |  -565.08%  | 665.08% |    0.0003    |    0.0003    | **96.66%** |  **OK (Exacto)**   |
+| `prueba_2_texto_natural.txt`   |  102,400  |  42,346   |  2,153  | **2.42** | **58.65%** | 41.35%  |    0.2954    |    0.3150    | **5.08%**  |  **OK (Exacto)**   |
+| `prueba_3_alta_repeticion.txt` |  102,400  |  20,649   |   396   | **4.96** | **79.83%** | 20.17%  |    0.3520    |    0.4264    | **1.92%**  |  **OK (Exacto)**   |
+| `prueba_4_baja_repeticion.txt` |  102,400  |  121,034  | 37,362  |   0.85   |  -18.20%   | 118.20% |    0.2487    |    0.2157    | **30.87%** |  **OK (Exacto)**   |
 
 ### Weissman Score Global del Corpus
-- **$\Sigma S_o$:** $307,263$ bytes  
-- **$\Sigma S_{c,\text{TDI}}$:** $184,448$ bytes $\implies R_{global} = 1.6659$  
-- **$\Sigma S_{c,\text{gzip}}$:** $88,125$ bytes $\implies R_{global,ref} = 3.4867$  
-- **$T_{global,\text{TDI}}$:** $1,238.68$ ms | **$T_{global,ref}$:** $7.16$ ms  
-- **$W_{global}$:** **0.1320**  
 
-*Interpretación:* $W < 1.0$ refleja que `gzip-6` supera a la solución evaluada. `gzip` utiliza LZ77 para reemplazar cadenas arbitrarias completas con referencias hacia atrás (alcanzando ratios $>100:1$ en repeticiones) y se ejecuta en código compilado C, mientras que nuestro compresor en Python puro modela exclusivamente la memoria de un solo byte anterior ($S_{n-1}$).
+- **$\Sigma S_o$:** $307,263$ bytes
+- **$\Sigma S_{c,\text{TDI}}$:** $184,448$ bytes $\implies R_{global} = 1.6659$
+- **$\Sigma S_{c,\text{gzip}}$:** $88,125$ bytes $\implies R_{global,ref} = 3.4867$
+- **$T_{global,\text{TDI}}$:** $1,238.68$ ms | **$T_{global,ref}$:** $7.16$ ms
+- **$W_{global}$:** **0.1320**
+
+_Interpretación:_ $W < 1.0$ refleja que `gzip-6` supera a la solución evaluada. `gzip` utiliza LZ77 para reemplazar cadenas arbitrarias completas con referencias hacia atrás (alcanzando ratios $>100:1$ en repeticiones) y se ejecuta en código compilado C, mientras que nuestro compresor en Python puro modela exclusivamente la memoria de un solo byte anterior ($S_{n-1}$).
 
 ---
 
