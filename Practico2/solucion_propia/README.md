@@ -27,7 +27,6 @@ Practico2/solucion_propia/
 │   └── README_pruebas.txt
 │
 └── results/               # Resultados reproducibles generados por benchmark.py
-    ├── benchmark_resultados_detallados.csv
     ├── tabla_comparativa.md
 ```
 
