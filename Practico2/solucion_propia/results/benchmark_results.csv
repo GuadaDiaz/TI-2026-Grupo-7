@@ -1,9 +1,0 @@
-Archivo,Algoritmo,Ratio,Tiempo_ms,Weissman
-prueba_1_pequena.txt,Python TDI,0.1521,158.34,0.0639
-prueba_1_pequena.txt,GZIP,1.082,1.19,1.0
-prueba_2_texto_natural.txt,Python TDI,2.4357,247.19,0.0189
-prueba_2_texto_natural.txt,GZIP,53.7229,1.99,1.0
-prueba_3_alta_repeticion.txt,Python TDI,4.9625,228.96,0.0139
-prueba_3_alta_repeticion.txt,GZIP,151.3888,2.08,1.0
-prueba_4_baja_repeticion.txt,Python TDI,0.846,316.1,0.2817
-prueba_4_baja_repeticion.txt,GZIP,1.2014,5.74,1.0

@@ -1,27 +1,20 @@
-# Resultados del Benchmark (Grupo 7)
-
-## Tabla Comparativa Principal
-
-| Archivo | Algoritmo | Ratio ($R$) | Tiempo ($T$) | Ratio gzip ($R_{ref}$) | Tiempo gzip ($T_{ref}$) | Weissman ($W$) |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| prueba_1_pequena.txt | Markov+Huffman (TDI) | 0.15 | 168.22 ms | 1.09 | 0.13 ms | 0.0001 |
-| prueba_2_texto_natural.txt | Markov+Huffman (TDI) | 2.42 | 345.01 ms | 53.36 | 1.02 ms | 0.0001 |
-| prueba_3_alta_repeticion.txt | Markov+Huffman (TDI) | 4.96 | 303.41 ms | 112.04 | 1.66 ms | 0.0039 |
-| prueba_4_baja_repeticion.txt | Markov+Huffman (TDI) | 0.85 | 443.09 ms | 1.20 | 4.64 ms | 0.1775 |
+# Resultados del Benchmark (Grupo 8)
 
 ## Tabla Detallada de Métricas
 
-| Archivo | $S_o$ (B) | $S_c$ (B) | $H$ (B) | $R$ | $A$ (%) | $P$ (%) | $V_c$ (MB/s) | $V_d$ (MB/s) | $O$ (%) | Integridad |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| prueba_1_pequena.txt | 63 | 419 | 405 | 0.15 | -565.08% | 665.08% | 0.0004 | 0.0004 | 96.66% | OK |
-| prueba_2_texto_natural.txt | 102400 | 42346 | 2153 | 2.42 | 58.65% | 41.35% | 0.2968 | 0.3092 | 5.08% | OK |
-| prueba_3_alta_repeticion.txt | 102400 | 20649 | 396 | 4.96 | 79.83% | 20.17% | 0.3375 | 0.3112 | 1.92% | OK |
-| prueba_4_baja_repeticion.txt | 102400 | 121034 | 37362 | 0.85 | -18.20% | 118.20% | 0.2311 | 0.1940 | 30.87% | OK |
+| Archivo | Algoritmo | $S_o$ (B) | $S_c$ (B) | $H$ (B) | $R$ | $A$ (%) | $P$ (%) | $V_c$ (MB/s) | $V_d$ (MB/s) | Tiempo (ms) | Weissman | Integridad |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| prueba_1_pequena.txt | **Python TDI** | 66 | 434 | 420 | 0.15 | -557.58% | 657.58% | 0.0003 | 0.0004 | 203.86 | 0.0609 | OK |
+|  | **GZIP (Ref)** | 66 | 61 | 10 | 1.08 | 7.58% | 92.42% | 0.0279 | - | 2.37 | 1.0000 | OK |
+|  | **PeaZip** | 66 | 346 | - | 0.19 | -424.24% | 524.24% | 0.0026 | - | 25.00 | 0.1261 | OK (GUI) |
+| prueba_2_texto_natural.txt | **Python TDI** | 103524 | 42502 | 2169 | 2.44 | 58.94% | 41.06% | 0.4157 | 0.4359 | 249.03 | 0.0189 | OK |
+|  | **GZIP (Ref)** | 103524 | 1927 | 10 | 53.72 | 98.14% | 1.86% | 46.1111 | - | 2.25 | 1.0000 | OK |
+|  | **PeaZip** | 103524 | 2218 | - | 46.67 | 97.86% | 2.14% | 3.2351 | - | 32.00 | 0.5772 | OK (GUI) |
+| prueba_3_alta_repeticion.txt | **Python TDI** | 102793 | 20714 | 412 | 4.96 | 79.85% | 20.15% | 0.4207 | 0.5184 | 244.36 | 0.0137 | OK |
+|  | **GZIP (Ref)** | 102793 | 679 | 10 | 151.39 | 99.34% | 0.66% | 49.2587 | - | 2.09 | 1.0000 | OK |
+|  | **PeaZip** | 102793 | 972 | - | 105.75 | 99.05% | 0.95% | 3.6712 | - | 28.00 | 0.4827 | OK (GUI) |
+| prueba_4_baja_repeticion.txt | **Python TDI** | 102400 | 121034 | 37362 | 0.85 | -18.20% | 118.20% | 0.2842 | 0.2716 | 360.25 | 0.2754 | OK |
+|  | **GZIP (Ref)** | 102400 | 85234 | 10 | 1.20 | 16.76% | 83.24% | 16.1943 | - | 6.32 | 1.0000 | OK |
+|  | **PeaZip** | 102400 | 85527 | - | 1.20 | 16.48% | 83.52% | 3.5310 | - | 29.00 | 0.6815 | OK (GUI) |
 
-## Weissman Score Global del Corpus
-
-- **R_global (TDI):** 1.6659
-- **R_global (gzip):** 3.4867
-- **T_global (TDI):** 1259.73 ms
-- **T_global (gzip):** 7.45 ms
-- **Weissman Score Global:** **0.1344**
+> **Nota:** El archivo GZIP se calcula sin medir descompresión y PeaZip se mide manualmente vía GUI.

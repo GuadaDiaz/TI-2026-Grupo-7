@@ -95,41 +95,39 @@ def calcular_weissman(r, r_ref, t_ms, t_ref_ms):
     if r <= 0 or r_ref <= 0: return 0.0
     return 1.0 * (r / r_ref) * (math.log(t_ref_ms) / math.log(t_ms))
 
-def exportar_csv_detallado(datos):
+def exportar_csv_y_md_detallado(datos):
     os.makedirs(RESULTS_DIR, exist_ok=True)
     csv_path = os.path.join(RESULTS_DIR, "benchmark_resultados_detallados.csv")
+    md_path = os.path.join(RESULTS_DIR, "tabla_comparativa.md")
     
+    # 1. Exportar CSV
     with open(csv_path, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
-        # Encabezados con TODAS las métricas de la cátedra
         writer.writerow([
             "Archivo", "Algoritmo", "S_orig (B)", "S_comp (B)", "Cabecera H (B)", 
             "Ratio", "Ahorro %", "Relativo %", "Vc (MB/s)", "Vd (MB/s)", 
             "T_Comp (ms)", "T_Decomp (ms)", "Weissman", "Integridad"
         ])
-        
         for arch, d in datos.items():
-            # TDI
             integ_str = "OK" if d['TDI']['integ'] else "FAIL"
-            writer.writerow([
-                arch, "Python TDI", d['tam_orig'], d['TDI']['tam'], d['TDI']['H'],
-                round(d['TDI']['r'], 4), round(d['TDI']['ahorro'], 2), round(d['TDI']['relativo'], 2),
-                round(d['TDI']['vc'], 4), round(d['TDI']['vd'], 4),
-                round(d['TDI']['t'], 2), round(d['TDI']['t_d'], 2), round(d['TDI']['w'], 4), integ_str
-            ])
-            # GZIP
-            writer.writerow([
-                arch, "GZIP", d['tam_orig'], d['GZIP']['tam'], 10,
-                round(d['GZIP']['r'], 4), round(d['GZIP']['ahorro'], 2), round(d['GZIP']['relativo'], 2),
-                round(d['GZIP']['vc'], 4), "-", round(d['GZIP']['t'], 2), "-", 1.0000, "OK"
-            ])
-            # PeaZip
+            writer.writerow([arch, "Python TDI", d['tam_orig'], d['TDI']['tam'], d['TDI']['H'], round(d['TDI']['r'], 4), round(d['TDI']['ahorro'], 2), round(d['TDI']['relativo'], 2), round(d['TDI']['vc'], 4), round(d['TDI']['vd'], 4), round(d['TDI']['t'], 2), round(d['TDI']['t_d'], 2), round(d['TDI']['w'], 4), integ_str])
+            writer.writerow([arch, "GZIP", d['tam_orig'], d['GZIP']['tam'], 10, round(d['GZIP']['r'], 4), round(d['GZIP']['ahorro'], 2), round(d['GZIP']['relativo'], 2), round(d['GZIP']['vc'], 4), "-", round(d['GZIP']['t'], 2), "-", 1.0000, "OK"])
             if d['PEA']['tam'] > 0:
-                writer.writerow([
-                    arch, "PeaZip", d['tam_orig'], d['PEA']['tam'], "-",
-                    round(d['PEA']['r'], 4), round(d['PEA']['ahorro'], 2), round(d['PEA']['relativo'], 2),
-                    round(d['PEA']['vc'], 4), "-", round(d['PEA']['t'], 2), "-", round(d['PEA']['w'], 4), "OK (GUI)"
-                ])
+                writer.writerow([arch, "PeaZip", d['tam_orig'], d['PEA']['tam'], "-", round(d['PEA']['r'], 4), round(d['PEA']['ahorro'], 2), round(d['PEA']['relativo'], 2), round(d['PEA']['vc'], 4), "-", round(d['PEA']['t'], 2), "-", round(d['PEA']['w'], 4), "OK (GUI)"])
+
+    # 2. Exportar Markdown (ideal para Github y lectura fácil)
+    with open(md_path, 'w', encoding='utf-8') as f:
+        f.write("# Resultados del Benchmark (Grupo 8)\n\n")
+        f.write("## Tabla Detallada de Métricas\n\n")
+        f.write("| Archivo | Algoritmo | $S_o$ (B) | $S_c$ (B) | $H$ (B) | $R$ | $A$ (%) | $P$ (%) | $V_c$ (MB/s) | $V_d$ (MB/s) | Tiempo (ms) | Weissman | Integridad |\n")
+        f.write("| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |\n")
+        for arch, d in datos.items():
+            integ_str = "OK" if d['TDI']['integ'] else "FAIL"
+            f.write(f"| {arch} | **Python TDI** | {d['tam_orig']} | {d['TDI']['tam']} | {d['TDI']['H']} | {d['TDI']['r']:.2f} | {d['TDI']['ahorro']:.2f}% | {d['TDI']['relativo']:.2f}% | {d['TDI']['vc']:.4f} | {d['TDI']['vd']:.4f} | {d['TDI']['t']:.2f} | {d['TDI']['w']:.4f} | {integ_str} |\n")
+            f.write(f"|  | **GZIP (Ref)** | {d['tam_orig']} | {d['GZIP']['tam']} | 10 | {d['GZIP']['r']:.2f} | {d['GZIP']['ahorro']:.2f}% | {d['GZIP']['relativo']:.2f}% | {d['GZIP']['vc']:.4f} | - | {d['GZIP']['t']:.2f} | 1.0000 | OK |\n")
+            if d['PEA']['tam'] > 0:
+                f.write(f"|  | **PeaZip** | {d['tam_orig']} | {d['PEA']['tam']} | - | {d['PEA']['r']:.2f} | {d['PEA']['ahorro']:.2f}% | {d['PEA']['relativo']:.2f}% | {d['PEA']['vc']:.4f} | - | {d['PEA']['t']:.2f} | {d['PEA']['w']:.4f} | OK (GUI) |\n")
+        f.write("\n> **Nota:** El archivo GZIP se calcula sin medir descompresión y PeaZip se mide manualmente vía GUI.\n")
 
 def main():
     print("Ejecutando mediciones detalladas...")
@@ -195,9 +193,9 @@ def main():
             print(f"{'':<28} | {'PeaZip':<15} | {'OK (GUI)':<10} | {d['PEA']['w']:.4f}")
         print("-" * 70)
         
-    exportar_csv_detallado(datos)
-    print(f"\n¡Resultados listos! Las métricas detalladas (Throughput, Cabeceras, Ahorro, etc.)")
-    print(f"fueron exportadas al archivo 'benchmark_resultados_detallados.csv' en la carpeta '{RESULTS_DIR}'.")
+    exportar_csv_y_md_detallado(datos)
+    print(f"\nLas métricas detalladas (Throughput, Cabeceras, Ahorro, etc.)")
+    print(f"fueron exportadas en CSV y Markdown a la carpeta '{RESULTS_DIR}'.")
 
 if __name__ == "__main__":
     os.makedirs(RESULTS_DIR, exist_ok=True)
