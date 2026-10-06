@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+
+# Archivos temporales que genera benchmark.py mientras mide
+Practico2/solucion_propia/temp_bench*
+
+# Archivos .pea de PeaZip: benchmark.py los regenera en cada corrida y el formato PEA
+# guarda la ruta absoluta local del archivo comprimido, así que no se versionan.
+*.pea

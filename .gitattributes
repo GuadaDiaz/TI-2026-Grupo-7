@@ -1,0 +1,8 @@
+# El corpus de pruebas tiene que conservar exactamente los bytes publicados por la
+# cátedra (SHA-256 de tests/README_pruebas.txt). Sin esto, Git en Windows
+# (core.autocrlf=true) convierte LF -> CRLF al hacer checkout y altera los archivos.
+Practico2/solucion_propia/tests/*.txt -text
+
+# Archivos comprimidos: siempre binarios.
+*.tdi binary
+*.pea binary
