@@ -28,6 +28,7 @@ Practico2/solucion_propia/
 │
 └── results/               # Resultados reproducibles generados por benchmark.py
     ├── benchmark_resultados_detallados.csv
+    ├── tabla_comparativa.md
 ```
 
 ---
@@ -144,42 +145,19 @@ Sea $S_o$ el tamaño original en bytes y $S_c$ el tamaño comprimido en bytes:
 
 ## Tabla Detallada de Métricas
 
-| Archivo                      | Algoritmo      | $S_o$ (B) | $S_c$ (B) | $H$ (B) |  $R$   | $A$ (%)  | $P$ (%) | $V_c$ (MB/s) | $V_d$ (MB/s) | Tiempo (ms) | Weissman | Integridad |
-| :--------------------------- | :------------- | :-------: | :-------: | :-----: | :----: | :------: | :-----: | :----------: | :----------: | :---------: | :------: | :--------: |
-| prueba_1_pequena.txt         | **Python TDI** |    66     |    434    |   420   |  0.15  | -557.58% | 657.58% |    0.0003    |    0.0004    |   203.86    |  0.0609  |     OK     |
-|                              | **GZIP (Ref)** |    66     |    61     |   10    |  1.08  |  7.58%   | 92.42%  |    0.0279    |      -       |    2.37     |  1.0000  |     OK     |
-|                              | **PeaZip**     |    66     |    346    |    -    |  0.19  | -424.24% | 524.24% |    0.0026    |      -       |    25.00    |  0.1261  |  OK (GUI)  |
-| prueba_2_texto_natural.txt   | **Python TDI** |  103524   |   42502   |  2169   |  2.44  |  58.94%  | 41.06%  |    0.4157    |    0.4359    |   249.03    |  0.0189  |     OK     |
-|                              | **GZIP (Ref)** |  103524   |   1927    |   10    | 53.72  |  98.14%  |  1.86%  |   46.1111    |      -       |    2.25     |  1.0000  |     OK     |
-|                              | **PeaZip**     |  103524   |   2218    |    -    | 46.67  |  97.86%  |  2.14%  |    3.2351    |      -       |    32.00    |  0.5772  |  OK (GUI)  |
-| prueba_3_alta_repeticion.txt | **Python TDI** |  102793   |   20714   |   412   |  4.96  |  79.85%  | 20.15%  |    0.4207    |    0.5184    |   244.36    |  0.0137  |     OK     |
-|                              | **GZIP (Ref)** |  102793   |    679    |   10    | 151.39 |  99.34%  |  0.66%  |   49.2587    |      -       |    2.09     |  1.0000  |     OK     |
-|                              | **PeaZip**     |  102793   |    972    |    -    | 105.75 |  99.05%  |  0.95%  |    3.6712    |      -       |    28.00    |  0.4827  |  OK (GUI)  |
-| prueba_4_baja_repeticion.txt | **Python TDI** |  102400   |  121034   |  37362  |  0.85  | -18.20%  | 118.20% |    0.2842    |    0.2716    |   360.25    |  0.2754  |     OK     |
-|                              | **GZIP (Ref)** |  102400   |   85234   |   10    |  1.20  |  16.76%  | 83.24%  |   16.1943    |      -       |    6.32     |  1.0000  |     OK     |
-|                              | **PeaZip**     |  102400   |   85527   |    -    |  1.20  |  16.48%  | 83.52%  |    3.5310    |      -       |    29.00    |  0.6815  |  OK (GUI)  |
+| Archivo                      | Algoritmo      | $Size_o$ (B) | $Size_{comp}$ (B) | $H$ (B) | $Ratio$ | $Ahoroo$ (%) | $Porcentaje$ (%) | $Vel_c$ (MB/s) | $Vel_d$ (MB/s) | Tiempo (ms) | Weissman | Integridad |
+| :--------------------------- | :------------- | :----------: | :---------------: | :-----: | :-----: | :----------: | :--------------: | :------------: | :------------: | :---------: | :------: | :--------: |
+| prueba_1_pequena.txt         | **Python TDI** |      66      |        434        |   420   |  0.15   |   -557.58%   |     657.58%      |     0.0005     |     0.0006     |   120.55    |  0.0675  |     OK     |
+|                              | **GZIP (Ref)** |      66      |        61         |   10    |  1.08   |    7.58%     |      92.42%      |     0.0577     |       -        |    1.14     |  1.0000  |     OK     |
+|                              | **PeaZip**     |      66      |        346        |    -    |  0.19   |   -424.24%   |     524.24%      |     0.0026     |       -        |    25.00    |  0.1261  |  OK (GUI)  |
+| prueba_2_texto_natural.txt   | **Python TDI** |    103524    |       42502       |  2169   |  2.44   |    58.94%    |      41.06%      |     0.3798     |     0.3985     |   272.55    |  0.0186  |     OK     |
+|                              | **GZIP (Ref)** |    103524    |       1927        |   10    |  53.72  |    98.14%    |      1.86%       |    39.7848     |       -        |    2.60     |  1.0000  |     OK     |
+|                              | **PeaZip**     |    103524    |       2218        |    -    |  46.67  |    97.86%    |      2.14%       |     3.2351     |       -        |    32.00    |  0.5772  |  OK (GUI)  |
+| prueba_3_alta_repeticion.txt | **Python TDI** |    102793    |       20714       |   412   |  4.96   |    79.85%    |      20.15%      |     0.4331     |     0.5294     |   237.32    |  0.0138  |     OK     |
+|                              | **GZIP (Ref)** |    102793    |        679        |   10    | 151.39  |    99.34%    |      0.66%       |    53.1257     |       -        |    1.93     |  1.0000  |     OK     |
+|                              | **PeaZip**     |    102793    |        972        |    -    | 105.75  |    99.05%    |      0.95%       |     3.6712     |       -        |    28.00    |  0.4827  |  OK (GUI)  |
+| prueba_4_baja_repeticion.txt | **Python TDI** |    102400    |      121034       |  37362  |  0.85   |   -18.20%    |     118.20%      |     0.4005     |     0.3821     |   255.67    |  0.2925  |     OK     |
+|                              | **GZIP (Ref)** |    102400    |       85234       |   10    |  1.20   |    16.76%    |      83.24%      |    24.1128     |       -        |    4.25     |  1.0000  |     OK     |
+|                              | **PeaZip**     |    102400    |       85527       |    -    |  1.20   |    16.48%    |      83.52%      |     3.5310     |       -        |    29.00    |  0.6815  |  OK (GUI)  |
 
 > **Nota:** El archivo GZIP se calcula sin medir descompresión y PeaZip se mide manualmente vía GUI.
-
-### Weissman Score Global del Corpus
-
-- **$\Sigma S_o$:** $307,263$ bytes
-- **$\Sigma S_{c,\text{TDI}}$:** $184,448$ bytes $\implies R_{global} = 1.6659$
-- **$\Sigma S_{c,\text{gzip}}$:** $88,125$ bytes $\implies R_{global,ref} = 3.4867$
-- **$T_{global,\text{TDI}}$:** $1,238.68$ ms | **$T_{global,ref}$:** $7.16$ ms
-- **$W_{global}$:** **0.1320**
-
-_Interpretación:_ $W < 1.0$ refleja que `gzip-6` supera a la solución evaluada. `gzip` utiliza LZ77 para reemplazar cadenas arbitrarias completas con referencias hacia atrás (alcanzando ratios $>100:1$ en repeticiones) y se ejecuta en código compilado C, mientras que nuestro compresor en Python puro modela exclusivamente la memoria de un solo byte anterior ($S_{n-1}$).
-
----
-
-## 9. Análisis Detallado por Prueba
-
-1. **`prueba_1_pequena.txt` (63 bytes):**
-   Demuestra el impacto del costo de cabecera. Los metadatos de las transiciones ocupan 405 bytes ($O = 96.66\%$), superando el tamaño original.
-2. **`prueba_2_texto_natural.txt` (100 KiB):**
-   Muestra un comportamiento óptimo en lenguaje natural. La entropía condicional $H(S_n \mid S_{n-1})$ es sensiblemente menor a la entropía marginal de orden cero, alcanzando un ahorro neto del **58.65%** ($R = 2.42$) con un overhead de cabecera de apenas $5.08\%$.
-3. **`prueba_3_alta_repeticion.txt` (100 KiB):**
-   Las rachas largas hacen que los contextos sean altamente predecibles (entropía condicional cercana a 0). Huffman genera códigos de 1 o 2 bits, alcanzando el mayor ahorro (**79.83%**, ratio $4.96:1$) y el mayor throughput de descompresión (**0.43 MB/s**).
-4. **`prueba_4_baja_repeticion.txt` (100 KiB):**
-   Al ser pseudoaleatorio uniforme sobre 95 caracteres imprimibles, las transiciones son casi equiprobables (entropía condicional cercana al límite $\log_2 95 = 6.57$ bits). El compresor sufre expansión y la cabecera de 95 contextos ocupa $37.3$ KB ($O = 30.87\%$).
