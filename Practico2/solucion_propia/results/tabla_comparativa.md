@@ -13,7 +13,7 @@ Generado por `benchmark.py` el 2026-10-06 11:45.
 - **Weissman global (oficial):** sobre las pruebas 2 a 4. $R_{global} = \sum S_o / \sum S_c$ y $T_{global}$ = mediana del tiempo total de compresión del corpus.
 - **Entorno:** Windows-11-10.0.26200-SP0, Python 3.12.9, CPU: Intel64 Family 6 Model 154 Stepping 4, GenuineIntel.
 
-## Tabla resumen (formato de la consigna)
+## Tabla resumen
 
 | Archivo | Algoritmo | Ratio | Tiempo | Ratio gzip | Tiempo gzip | Weissman |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
